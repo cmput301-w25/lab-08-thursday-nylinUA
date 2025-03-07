@@ -17,6 +17,10 @@ public class MovieProvider {
         movieCollection = firestore.collection("movies");
     }
 
+    public static void setInstanceForTesting(FirebaseFirestore mockFirestore) {
+        movieProvider = new MovieProvider(firestore);
+    }
+
     public interface DataStatus {
         void onDataUpdated();
         void onError(String error);
@@ -75,7 +79,9 @@ public class MovieProvider {
         docRef.delete();
     }
 
+
     public boolean validMovie(Movie movie, DocumentReference docRef) {
+
         return movie.getId().equals(docRef.getId()) && !movie.getTitle().isEmpty() && !movie.getGenre().isEmpty() && movie.getYear() > 0;
     }
 }
