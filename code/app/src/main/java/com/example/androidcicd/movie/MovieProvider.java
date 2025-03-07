@@ -18,7 +18,7 @@ public class MovieProvider {
     }
 
     public static void setInstanceForTesting(FirebaseFirestore mockFirestore) {
-        movieProvider = new MovieProvider(firestore);
+        movieProvider = new MovieProvider(mockFirestore);
     }
 
     public interface DataStatus {
